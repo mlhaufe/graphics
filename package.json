@@ -1,14 +1,8 @@
 {
-    "name": "@mlhaufe/graphics",
-    "version": "0.1.0",
-    "description": "A browser-oriented graphics library",
-    "type": "module",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.mjs"
-        }
-    },
+    "name": "@mlhaufe/graphics-monorepo",
+    "private": true,
+    "author": "Michael L Haufe <tno@thenewobjective.com> (https://thenewobjective.com)",
+    "license": "AGPL-3.0-only",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mlhaufe/graphics.git"
@@ -17,24 +11,15 @@
         "url": "https://github.com/mlhaufe/graphics/issues"
     },
     "scripts": {
-        "build:dev": "webpack --mode=development",
-        "build:prod": "webpack --mode=production",
-        "lint": "eslint src/ --ext .mts --fix",
-        "test": "globstar -- node --import tsx --test \"src/**/*.test.mts\""
+        "build:demo": "npm -w @mlhaufe/graphics-demo run build",
+        "build:graphics:dev": "npm -w @mlhaufe/graphics run build:dev ",
+        "build:graphics:prod": "npm -w @mlhaufe/graphics run build:prod",
+        "lint:graphics": "npm -w @mlhaufe/graphics run lint",
+        "test:graphics": "npm -w @mlhaufe/graphics run test",
+        "serve:demo": "npm -w @mlhaufe/graphics-demo run serve"
     },
-    "author": "Michael L Haufe <tno@thenewobjective.com> (https://thenewobjective.com)",
-    "license": "AGPL-3.0-only",
-    "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^7.2.0",
-        "@typescript-eslint/parser": "^7.2.0",
-        "eslint": "^8.57.0",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-webpack-plugin": "^4.1.0",
-        "globstar": "^1.0.0",
-        "ts-loader": "^9.5.1",
-        "tsx": "^4.7.1",
-        "typescript": "^5.4.2",
-        "webpack": "^5.90.3",
-        "webpack-cli": "^5.1.4"
-    }
+    "workspaces": [
+        "apps/demo",
+        "packages/graphics"
+    ]
 }
