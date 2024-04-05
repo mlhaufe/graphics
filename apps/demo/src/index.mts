@@ -1,4 +1,4 @@
-import { Canvas, Ellipse, Polygon, Rectangle, RightTriangle, Shape } from '@mlhaufe/graphics'
+import { Canvas, Circle, Ellipse, Polygon, Rectangle, RightTriangle, Shape, zip } from '@mlhaufe/graphics'
 
 Object.assign(document.body.style, {
     display: 'grid',
@@ -13,7 +13,7 @@ function drawSimpleShapes() {
         pic2 = new Polygon([50, 50], [100, 100], [50, 100])
 
     canvas.present({ position: [0, 0], shape: pic1, fillStyle: 'red' })
-    canvas.present({ position: [100, 100], shape: pic2, strokeStyle: 'blue' })
+    canvas.present({ position: [0, 0], shape: pic2, fillStyle: 'blue' })
 }
 
 function drawSierpinskiTriangles() {
@@ -53,18 +53,24 @@ function drawColoredShapes() {
             ['magenta', new Polygon([-125, 125], [-75, 100], [-55, 10], [-85, -50], [-150, 0])]
         ]
 
-    const drawShapes = (shs: ColoredShapes) => {
-        const [[c, s], ...cs] = shs
-        if (shs.length === 0)
-            return
-        else
-            canvas.present({ position: [0, 0], shape: s, fillStyle: c })
-        drawShapes(cs)
-    }
+    shs.forEach(([fillStyle, shape]) => {
+        canvas.present({ position: [0, 0], shape, fillStyle })
+    })
+}
 
-    drawShapes(shs)
+function drawConCircles() {
+    const canvas = new Canvas({ container: document.body, width: 300, height: 300 }),
+        conCircles = Array.from({ length: 9 }, (_, i) => new Circle(15 + i * 15)).reverse(),
+        coloredCircles = zip(['white', 'blue', 'green', 'cyan', 'red', 'magenta', 'yellow', 'black'],
+            conCircles
+        )
+
+    coloredCircles.forEach(([fillStyle, shape]) => {
+        canvas.present({ position: [0, 0], shape, fillStyle })
+    })
 }
 
 drawSimpleShapes()
 drawSierpinskiTriangles()
 drawColoredShapes()
+drawConCircles()
