@@ -16,7 +16,8 @@
         "build:graphics:prod": "npm -w @mlhaufe/graphics run build:prod",
         "lint:graphics": "npm -w @mlhaufe/graphics run lint",
         "test:graphics": "npm -w @mlhaufe/graphics run test",
-        "serve:demo": "npm -w @mlhaufe/graphics-demo run serve"
+        "serve:demo": "npm -w @mlhaufe/graphics-demo run serve",
+        "test": "npm -w @mlhaufe/graphics run test"
     },
     "workspaces": [
         "apps/demo",
